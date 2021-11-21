@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {IconButton, SvgIcon, Popover, Typography } from '@mui/material';
+import {IconButton, SvgIcon, Popover, Typography, List, ListItemButton, ListItemText, Divider } from '@mui/material';
 import {
   Dashboard,
   Payments,
@@ -37,34 +37,42 @@ const Sidebar = () => {
     {
       Icon: Dashboard,
       title: 'Dashboard',
+      menu: ['Overview', 'Analytics', 'Settings']
     },
     {
       Icon: ProductIcon,
       title: 'Products',
+      menu: ['All', 'New', 'Archived']
     },
     {
       Icon: ShoppingCart,
       title: 'Orders',
+      menu: ['Fulfilled', 'Pending', 'Returns']
     },
     {
       Icon: ShoppingBasket,
       title: 'Collections',
+      menu: ['All', 'Top ranking', 'Archived']
     },
     {
       Icon: LocalOffer,
       title: 'Promotions',
+      menu: ['Gift cards', 'Running', 'Archived']
     },
     {
       Icon: SupervisorAccount,
       title: 'Customers',
+      menu: ['All', 'New', 'Returning']
     },
     {
       Icon: DashboardCustomize,
       title: 'Apps',
+      menu: ['Private', 'Installed', 'Marketplace']
     },
     {
       Icon: Payments,
       title: 'Payments',
+      menu: ['Outgoing', 'Gateways', 'Incoming']
     },
   ]
   const [selected, setSelected]= useState(links[0])
@@ -103,7 +111,7 @@ const Sidebar = () => {
             <Icon fontSize="small" lassName={styles.icon} htmlColor={current ? "#0156A4": ''}/>
           </IconButton>
         )})}
-        <Popover
+        {/* <Popover
           id="mouse-over-popover"
           sx={{
             pointerEvents: 'none',
@@ -122,9 +130,20 @@ const Sidebar = () => {
           disableRestoreFocus
         >
           <Typography sx={{ p: 1 }}>{anchorText}</Typography>
-        </Popover>
+        </Popover> */}
       </div>
-      <div className={styles.right}>{selected.title}</div>
+      <div className={styles.right}>
+        <Typography className={styles.title}>{selected.title}</Typography>
+        <Divider className={styles.divider}/>
+        <List component="nav" aria-label="secondary mailbox folder">
+          {selected.menu.map(item => (
+        <ListItemButton key={item}>
+          <ListItemText primary={item} />
+        </ListItemButton>
+          ))}
+      </List>
+      </div>
+      
     </div>
   )
 }

@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import styles from './login.module.scss'
 const data = {
   logo: 'https://assets-global.website-files.com/5e3177cecf36f6591e4e38cb/5ea2a86505e63bdd814cf868_Logo.png',
-  background: 'https://images.unsplash.com/photo-1637406305183-ff6d191b5880?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=993&q=80'
+  background: 'https://images.unsplash.com/photo-1601600576337-c1d8a0d1373c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80'
 }
 
 const Login = () => {
@@ -27,12 +27,12 @@ const Login = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.left}>
-        <Image src={background} layout='fill' objectFit="cover" objectPosition="left" />
+        <Image alt="background" src={background} layout="fill" objectFit="cover" objectPosition="left" />
       </div>
       <div className={styles.right}>
         <div className={styles.container}>
           <div className={styles.logoContainer}>
-            <Image src={logo} layout='fill' objectFit="contain" />
+            <Image alt="logo" src={logo} layout="fill" objectFit="contain" />
           </div>
           <Typography variant="h4" gutterBottom component="div">
             Heading
@@ -45,6 +45,7 @@ const Login = () => {
             <TextField
               label="Enter username"
               variant="outlined"
+              defaultValue="admin"
               name="username"
               className={styles.input}
             />
@@ -59,7 +60,7 @@ const Login = () => {
               Sign in
             </Button>
             <div className={styles.forgot}>
-              <Link href="/fotgot-password" >
+              <Link href="/login" passHref>
                 <Typography variant="body2" gutterBottom component="div" className={styles.link}>
                   Forgot Password?
                 </Typography>
@@ -67,9 +68,9 @@ const Login = () => {
             </div>
             <div>
               <Typography variant="body2" gutterBottom component="span">
-                Don't have an account? {' '}
+                Do not have an account? <span style={{ paddingLeft: '10px' }} />
               </Typography>
-              <Link href="/fotgot-password">
+              <Link href="/login" passHref>
                 <Typography variant="body2" gutterBottom component="span" className={styles.link}>
                   Signup
                 </Typography>
@@ -81,13 +82,5 @@ const Login = () => {
     </div>
   )
 }
-
-export async function getServerSideProps(context) {
-  console.log('---->', context.req)
-  return {
-    props: {}, // will be passed to the page component as props
-  }
-}
-
 
 export default Login

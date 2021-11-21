@@ -1,10 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default function handler(req, res) {
-  console.log('req.body', req.body)
   try {
     const { username, password } = JSON.parse(req.body)
-    if (username == 'george') {
+    if (username == 'admin') {
       res.status(200).json({
         data: {
           token: 'jwt---token'

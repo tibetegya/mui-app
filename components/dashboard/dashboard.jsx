@@ -1,13 +1,15 @@
+import React from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import Image from 'next/image'
-import { Typography, TextField, Button } from '@mui/material';
+import { Typography, Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material';
+import { PersonAdd, Settings, Logout } from '@mui/icons-material';
+import Link from 'next/link';
 
 /** local imports */
 import styles from './dashboard.module.scss'
-import Sidebar from 'components/sidebar'
+import Sidebar from '../sidebar'
 const data = {
   logo: 'https://assets-global.website-files.com/5e3177cecf36f6591e4e38cb/5ea2a86505e63bdd814cf868_Logo.png',
-  background: 'https://images.unsplash.com/photo-1637406305183-ff6d191b5880?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=993&q=80'
 }
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -55,13 +57,96 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 const Dashboard = () => {
-  const { logo, background } = data
+  const { logo } = data
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <div className={styles.wrapper}>
     <div className={styles.header}>
       <div className={styles.logo}>
-        <Image layout="fill" objectFit="contain" src={logo}/>
+        <Image alt="logo" layout="fill" objectFit="contain" src={logo}/>
       </div>
+        <div>
+      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+        {/* <Typography sx={{ minWidth: 100 }}>Contact</Typography> */}
+        <Typography>Profile</Typography>
+        <Tooltip title="Account settings">
+          <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+          </IconButton>
+        </Tooltip>
+      </Box>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            '&:before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        <MenuItem>
+          <Avatar /> Profile
+        </MenuItem>
+        <MenuItem>
+          <Avatar /> My account
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemIcon>
+            <PersonAdd fontSize="small" />
+          </ListItemIcon>
+          Add another account
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Settings
+        </MenuItem>
+        <MenuItem>
+          <Link href="/login" passHref>
+            <a className={styles.logout}>
+              <ListItemIcon>
+                <Logout fontSize="small" />
+              </ListItemIcon>
+              Logout
+            </a>
+          </Link>
+        </MenuItem>
+      </Menu>
+        </div>
     </div>
     <div className={styles.content}>
       <div className={styles.sidebar}><Sidebar /></div>

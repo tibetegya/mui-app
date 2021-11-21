@@ -39,3 +39,9 @@ $inner: 7;
 .selected {
   background-color: color.adjust(colors.$blue, $alpha: -0.9);
 }
+.divider {
+  @include paddingY(1);
+}
+.title {
+  font-weight: bold;
+}

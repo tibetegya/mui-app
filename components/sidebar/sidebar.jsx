@@ -32,7 +32,7 @@ const CustomIcon = ({ name, ...rest }) => {
 
 const ProductIcon = (props) => <CustomIcon name="product" {...props} />
 
-const sidebar = () => {
+const Sidebar = () => {
   const links = [
     {
       Icon: Dashboard,
@@ -129,4 +129,4 @@ const sidebar = () => {
   )
 }
 
-export default sidebar
+export default Sidebar

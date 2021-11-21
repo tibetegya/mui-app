@@ -1,0 +1,41 @@
+@use 'styles/mixins' as *;
+
+.wrapper {
+}
+
+.content {
+  display: flex;
+  background-color: var(--background);
+  height: calc(100vh - spacing(8));
+}
+.header {
+  height: spacing(8);
+  @include paddingX(1);
+  @include paddingY(1);
+  // box-shadow: var(--shadow1);
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar {
+  height: 100%;
+  width: spacing(40);
+  border-right: 1px solid var(--border);
+}
+
+.main {
+  flex-grow: 1;
+  height: 100%;
+  @include padding(1.5);
+}
+.table {
+  @include marginY(4);
+  position: relative;
+  background-color: white;
+  min-height: 70vh;
+}
+
+.logo {
+  // border: 1px solid blue;
+  position: relative;
+  @include size(6);
+}

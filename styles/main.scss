@@ -1,0 +1,8 @@
+@use 'styles/colors' as *;
+
+:root {
+  --blue: #{$blue};
+  --accent: #{$accent};
+  --background: #f7f9fa;
+  --border: #dadce0;
+}

@@ -1,0 +1,47 @@
+
+$spacing: 8px;
+
+@mixin mobile {
+  @media screen and (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 575px) {
+    @content;
+  }
+}
+
+@function spacing($unit) {
+  @return $unit * $spacing;
+}
+
+@mixin padding($multiplier) {
+  padding: spacing($multiplier);
+}
+@mixin paddingX($multiplier) {
+  padding-left: spacing($multiplier);
+  padding-right: spacing($multiplier);
+}
+@mixin paddingY($multiplier) {
+  padding-top: spacing($multiplier);
+  padding-bottom: spacing($multiplier);
+}
+
+@mixin margin($multiplier) {
+  margin: spacing($multiplier);
+}
+@mixin marginX($multiplier) {
+  margin-left: spacing($multiplier);
+  margin-right: spacing($multiplier);
+}
+@mixin marginY($multiplier) {
+  margin-top: spacing($multiplier);
+  margin-bottom: spacing($multiplier);
+}
+
+@mixin size($multiplier) {
+  width: spacing($multiplier);
+  height: spacing($multiplier);
+}

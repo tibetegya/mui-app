@@ -1,0 +1,79 @@
+@use 'styles/mixins' as *;
+
+$left-width: 40vw;
+
+.wrapper {
+  position: relative;
+  // border: 1px solid red;
+  @include desktop {
+    display: flex;
+    min-height: 100vh;
+  }
+}
+
+.left {
+  position: relative;
+  min-height: 100vh;
+  // border: 1px solid red;
+  @include mobile {
+    display: none;
+  }
+  width: $left-width;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // min-height: 100%;
+  width: 100vw;
+  @include desktop {
+    min-height: 100vh;
+    width: calc(100vw - $left-width);
+  }
+}
+
+.container {
+  @include paddingY(2);
+  margin: 0 auto;
+  width: calc(100vw - spacing(4));
+  @include desktop {
+    width: 100%;
+    margin: 0 96px;
+    // padding-top: 96px;
+    max-width: 360px;
+  }
+}
+
+.input {
+  @include marginY(2);
+  width: 100%;
+  & + .input {
+    margin-top: spacing(1);
+  }
+}
+.button {
+  background-color: var(--blue);
+  @include marginY(2);
+  @include paddingY(1.5);
+  width: 100%;
+}
+
+.logoContainer {
+  position: relative;
+  display: flex;
+  // border: 1px solid green;
+  width: spacing(10);
+  height: spacing(10);
+  margin-bottom: spacing(2);
+}
+.link {
+  color: var(--accent);
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.forgot {
+  @include marginY(2);
+}
